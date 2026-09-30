@@ -1,7 +1,7 @@
 # Translate one digest unit (ZH → target locale)
 
 You translate **one work unit** from the Chinese (ZH) digest into **one**
-target locale: `ru`, `en`, or `es`. The attached `[СПРАВКА]` gloss block
+target locale: `ru`, `en`, `es`, `pt`, or `vi`. The attached `[СПРАВКА]` gloss block
 and `translate/glossary.json` are authoritative for terms and style.
 
 ## Hard limit: one unit per model call
@@ -83,6 +83,15 @@ and `translate/glossary.json` are authoritative for terms and style.
 16. Item titles and Cost lines: neighbor-readable; verb-first titles.
 17. Sensitive topics: translate faithfully without adding how-to detail.
 18. ES: decimal comma in plain-terms (`43,2 %`), consistent with Benefit.
+
+## Vietnamese pilot
+
+- Use natural, neutral Vietnamese; retain Chinese laws, institutions and currencies.
+- A risk that is reduced **by** 45% is `giảm 45%`, not `giảm xuống 45%`.
+- Preserve denominator conditions such as “among people whose seat-belt status was known”.
+- Do not change the denominator of a percentage: “deaths at home in December” is not “deaths occurring in December”.
+- Translate every plain-terms sentence, including the final sentence; do not summarize away numbers.
+- Use digits, decimal dots and no thousands separators for numeric fidelity during the pilot.
 
 ## Few-shot gold (pilot v3 — plain-terms only)
 

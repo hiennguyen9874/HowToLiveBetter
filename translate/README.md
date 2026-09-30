@@ -1,6 +1,6 @@
 # Translation pipeline (`translate/`)
 
-Machine-assisted ZH → `ru` / `en` / `es`. CN chapters stay at `book/NN-*.md`;
+Machine-assisted ZH → registered locales (`ru`, `en`, `es`, `pt`; `vi` pilot). CN chapters stay at `book/NN-*.md`;
 overlays land in `book/<lang>/`.
 
 Site/OG/repo gates live in [`forge/`](../forge/README.md). Rituals (sync, add-chapter)
@@ -62,6 +62,17 @@ flowchart LR
 | Human | — | MR + squash |
 
 Research CLIs under `validate/research/` are calibration only — not on this flow.
+
+### Vietnamese pilot
+
+See [docs/pipeline/vi-pilot.md](../docs/pipeline/vi-pilot.md) and the
+[reviewed chapter 01 sample](../docs/pipeline/vi-ch01-pilot.md).
+`vi` is explicitly unpublished (`publication: pilot` in `langs.json`).
+Partial assembly/verification accepts `--items 1,2,3`; partial assembly into
+`book/` is forbidden and verify requires `--file`, without completion stamps.
+Default bulk waves/quality and ebook builds exclude unpublished pilots.
+Vietnamese LT/readability gates are not configured; they return exit 2, not
+success. Laya polish is not validated for Vietnamese yet.
 
 ---
 

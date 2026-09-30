@@ -54,6 +54,18 @@
       "inLanguage": "pt-BR",
       "shortLabel": "PT",
       "menuLabel": "Português"
+    },
+    {
+      "code": "vi",
+      "primary": false,
+      "publication": "pilot",
+      "contentRoot": "book/vi",
+      "readme": "README.vi.md",
+      "htmlLang": "vi",
+      "ogLocale": "vi_VN",
+      "inLanguage": "vi",
+      "shortLabel": "VI",
+      "menuLabel": "Tiếng Việt"
     }
   ]
 }

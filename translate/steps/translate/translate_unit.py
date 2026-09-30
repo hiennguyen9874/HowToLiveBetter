@@ -23,6 +23,7 @@ _LANG_NAMES = {
     "en": "English",
     "es": "Spanish",
     "pt": "Brazilian Portuguese",
+    "vi": "Vietnamese",
 }
 
 LOCALE_FIELD_HINTS = {
@@ -201,6 +202,15 @@ def build_messages(
                 "Do NOT output §TAG§ or §SRC§ (pipeline injects them).",
                 "Do NOT use bold **Label:** for fields.",
                 "",
+            ]
+        )
+    if lang == "vi":
+        user_parts.extend(
+            [
+                "Use natural, neutral Vietnamese. Preserve the Chinese context and all conditions.",
+                "Keep numerical values in digits, including converted Chinese scale units; use decimal dots and no thousands separators.",
+                "Do not add Vietnamese emergency numbers, laws, or medical advice.",
+                "For intro 00 use ../../README.vi.md for the table-of-contents back-link. The human editor will add the unofficial-translation status line.",
             ]
         )
     user_parts.append("Output ONLY the translated unit markdown — no preamble, no fences.")

@@ -110,7 +110,8 @@ export const unique = (arr) => [...new Set(arr)];
 
 export function loadLangs() {
   const raw = JSON.parse(read('translate/langs.json'));
-  return raw.languages.map((row) => {
+  // Pilot locales have no published corpus or ebook metadata yet.
+  return raw.languages.filter((row) => row.publication !== 'pilot').map((row) => {
     const extra = LOCALE[row.code];
     if (!extra) throw new Error(`no ebook locale table for ${row.code}`);
     return {

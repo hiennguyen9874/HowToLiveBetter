@@ -38,6 +38,7 @@ import time
 from translate.lib import labels
 from translate.lib.config import default_root, translation_langs
 from translate.lib.paths import cn_chapter_path, tr_chapter_path
+from translate.lib.pilot import parse_items, select_source
 
 root = default_root()
 
@@ -666,12 +667,18 @@ def main():
     ap.add_argument("--lang", required=True, choices=translation_langs())
     ap.add_argument("--file", help="explicit translated-file path (default: book/<lang>/NN-*)")
     ap.add_argument(
+        "--items",
+        help="pilot only: selected source item IDs; requires --file, never stamps completion",
+    )
+    ap.add_argument(
         "--json",
         action="store_true",
         help="emit machine JSON report on stdout (before exit on FAIL)",
     )
     args = ap.parse_args()
     n, lang = args.chapter, args.lang
+    if args.items and not args.file:
+        ap.error("--items requires --file; pilot verification cannot mark a chapter complete")
 
     try:
         src_path = cn_chapter_path(root, n)
@@ -691,6 +698,12 @@ def main():
 
     sl = open(src_path, encoding="utf-8").read().splitlines()
     tl = open(tr_path, encoding="utf-8").read().splitlines()
+    if args.items:
+        try:
+            sl = select_source(sl, parse_items(args.items))
+        except ValueError as exc:
+            ap.error(str(exc))
+        print(f"PILOT ONLY: source items {args.items}; not a full-chapter verification")
 
     src_labels = tuple(
         labels.source_bullet(code, root=root) for code in ("cn", *translation_langs(root))
@@ -721,6 +734,17 @@ def main():
             f"headings {len(sh)} != {len(th)}",
             {"kind": "headings_mismatch", "got": len(th), "want": len(sh)},
         )
+
+    if args.items:
+        expected_ids = parse_items(args.items)
+        actual_ids = [
+            int(match.group(1)) for line in th if (match := re.match(r"^### (\d+)\.", line))
+        ]
+        if actual_ids != expected_ids:
+            add_fail(
+                "pilot item IDs do not match selected source items",
+                {"kind": "pilot_items_mismatch", "got": actual_ids, "want": expected_ids},
+            )
 
     st = sum(1 for x in sl if "成本标签" in x)
     tt = sum(1 for x in tl if "成本标签" in x)
@@ -820,7 +844,12 @@ def main():
     in_note = False
     for idx, ln in enumerate(tl, 1):
         if ln.startswith(
-            ("> Примечание переводчика", "> Translator's note", "> Nota del traductor")
+            (
+                "> Примечание переводчика",
+                "> Translator's note",
+                "> Nota del traductor",
+                "> Ghi chú người dịch",
+            )
         ):
             in_note = True
         elif not ln.startswith(">"):
@@ -868,6 +897,8 @@ def main():
         print("  WARN:", w)
     report = {
         "ok": not fails,
+        "scope": "pilot" if args.items else "chapter",
+        "selected_items": parse_items(args.items) if args.items else None,
         "chapter": n,
         "lang": lang,
         "file": tr_path,

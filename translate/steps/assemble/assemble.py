@@ -8,6 +8,7 @@ Usage:
 Exits non-zero and prints FAIL lines if anything is off.
 """
 
+import argparse
 import json
 import os
 import re
@@ -16,10 +17,27 @@ import sys
 from translate.lib import labels
 from translate.lib.config import default_root, unit_dir
 from translate.lib.paths import _nn, cn_chapter_path
+from translate.lib.pilot import parse_items, select_source
 
 root = default_root()
-n, work, out = _nn(sys.argv[1]), sys.argv[2], sys.argv[3]
-lang = sys.argv[4] if len(sys.argv) > 4 else "ru"
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument("chapter")
+parser.add_argument("workdir")
+parser.add_argument("output")
+parser.add_argument("lang", nargs="?", default="ru")
+parser.add_argument(
+    "--items", help="pilot only: comma-separated item IDs; output must be outside book/"
+)
+args = parser.parse_args()
+n, work, out, lang = _nn(args.chapter), args.workdir, args.output, args.lang
+try:
+    pilot_items = parse_items(args.items) if args.items else None
+except ValueError as exc:
+    parser.error(str(exc))
+if pilot_items and os.path.commonpath(
+    [os.path.realpath(out), os.path.join(root, "book")]
+) == os.path.join(root, "book"):
+    parser.error("pilot output must be outside book/; incomplete chapters are not publishable")
 
 source_word = labels.source_label(lang, root=root)
 evidence_word = labels.evidence_grade_label(lang, root=root)
@@ -28,6 +46,9 @@ meta = json.load(
     open(os.path.join(os.path.dirname(unit_dir(root, "cn", n)), "blocks.json"), encoding="utf-8")
 )
 fails = []
+item_ids = pilot_items or list(range(1, meta["items"] + 1))
+if any(item > meta["items"] for item in item_ids):
+    parser.error("selected item exceeds chapter item count")
 
 parts = [
     ln.rstrip()
@@ -38,7 +59,7 @@ parts = [
     .read()
     .splitlines()
 ]
-for i in range(1, meta["items"] + 1):
+for i in item_ids:
     up = os.path.join(work, "units", f"{i:02d}.md")
     if not os.path.exists(up):
         fails.append(f"unit {i:02d} missing")
@@ -88,6 +109,9 @@ except FileNotFoundError as e:
     sys.exit(1)
 sl = open(src_path, encoding="utf-8").read().splitlines()
 tl = open(out, encoding="utf-8").read().splitlines()
+if pilot_items:
+    sl = select_source(sl, pilot_items)
+    print(f"PILOT ONLY: selected items {pilot_items}; not a complete chapter")
 
 si = [x for x in sl if x.startswith("### ")]
 ti = [x for x in tl if x.startswith("### ")]

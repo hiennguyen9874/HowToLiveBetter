@@ -13,7 +13,7 @@ def main(chapters):
     rows, fails = [], 0
     py = sys.executable
     for nn in chapters:
-        for lang in translation_langs(REPO):
+        for lang in translation_langs(REPO, include_pilots=False):
             try:
                 out = tr_chapter_path(REPO, nn, lang)
             except FileNotFoundError as e:

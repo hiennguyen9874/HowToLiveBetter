@@ -5,6 +5,7 @@
     "ru": "translate/runs/active/ru/{nn}/units",
     "en": "translate/runs/active/en/{nn}/units",
     "es": "translate/runs/active/es/{nn}/units",
-    "pt": "translate/runs/active/pt/{nn}/units"
+    "pt": "translate/runs/active/pt/{nn}/units",
+    "vi": "translate/runs/active/vi/{nn}/units"
   }
 }

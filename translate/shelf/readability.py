@@ -246,6 +246,12 @@ def main():
         "--strict", action="store_true", help="Exit 1 when files below target (for gating)"
     )
     args = ap.parse_args()
+    if args.lang not in SCORERS:
+        print(
+            f"Readability metric not calibrated for {args.lang!r}; human review required",
+            file=sys.stderr,
+        )
+        sys.exit(2)
 
     scan_dir = args.dir or os.path.join(ROOT, "book", args.lang)
     if not os.path.isdir(scan_dir):

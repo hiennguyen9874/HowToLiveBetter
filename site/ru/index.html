@@ -4,7 +4,7 @@
 <script>window.__HTLB_LANG__='ru';window.__HTLB_BASE__='../';window.__HTLB_V2__=1;document.documentElement.classList.add('v2');</script>
 <script>
 /* HTLB_LANGS_BEGIN */
-window.__HTLB_LANGS__={"codes":["en","ru","zh","es","pt"],"primary":"en","shortLabels":{"en":"EN","ru":"РУ","zh":"中","es":"ES","pt":"PT"},"menuLabels":{"en":"English","ru":"Русский","zh":"中文","es":"Español","pt":"Português"},"readmes":{"en":"README.md","ru":"README.ru.md","zh":"README.zh.md","es":"README.es.md","pt":"README.pt.md"},"ogLocales":{"en":"en_US","ru":"ru_RU","zh":"zh_CN","es":"es_419","pt":"pt_BR"},"inLanguages":{"en":"en","ru":"ru","zh":"zh-CN","es":"es-419","pt":"pt-BR"}};
+window.__HTLB_LANGS__={"codes":["en","ru","zh","es","pt","vi"],"primary":"en","shortLabels":{"en":"EN","ru":"РУ","zh":"中","es":"ES","pt":"PT","vi":"VI"},"menuLabels":{"en":"English","ru":"Русский","zh":"中文","es":"Español","pt":"Português","vi":"Tiếng Việt"},"readmes":{"en":"README.md","ru":"README.ru.md","zh":"README.zh.md","es":"README.es.md","pt":"README.pt.md","vi":"README.vi.md"},"ogLocales":{"en":"en_US","ru":"ru_RU","zh":"zh_CN","es":"es_419","pt":"pt_BR","vi":"vi_VN"},"inLanguages":{"en":"en","ru":"ru","zh":"zh-CN","es":"es-419","pt":"pt-BR","vi":"vi"}};
 /* HTLB_LANGS_END */
 </script>
 <script>
@@ -525,12 +525,13 @@ h1,h2,h3{text-wrap:wrap}
     <div class="nav-r">
       <details class="lang-dd" id="lang">
         <summary title="Language / Язык / 语言" aria-label="Выбрать язык"><span id="lang-label">РУ</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary>
-                                                                                                                                                                                                                                                                                                                                                                                                        <div class="lang-menu" role="menu">
+                                                                                                                                                                                                                                                                                                                                                                                                                                <div class="lang-menu" role="menu">
           <button type="button" role="menuitem" data-lang="en">English</button>
           <button type="button" role="menuitem" data-lang="ru">Русский</button>
           <button type="button" role="menuitem" data-lang="zh">中文</button>
           <button type="button" role="menuitem" data-lang="es">Español</button>
           <button type="button" role="menuitem" data-lang="pt">Português</button>
+          <button type="button" role="menuitem" data-lang="vi">Tiếng Việt</button>
         </div>
       </details>
       <a class="icon-btn ic-doc" href="../README.ru.md" title="Открыть README.ru" aria-label="README"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg></a>
@@ -876,6 +877,42 @@ const I18N = {
    author:'HowToLiveBetter (tradução para português brasileiro)',
    forkNote:'Tradução não oficial. O <a href="https://eternity4719.github.io/HowToLiveBetter/" target="_blank" rel="noopener">original em chinês</a> é o autoritativo.',
    snapshotNote:'' },
+ vi:{ htmlLang:'vi', title:'Cẩm nang sống hiệu quả', search:'Tìm trong các khuyến nghị', searchShort:'Tìm kiếm',
+   noscriptH:'Cẩm nang sống hiệu quả',
+   noscriptP:'Bản tiếng Việt đang dịch thử, chưa phải bản đầy đủ.',
+   noscriptLink:'Đọc tình trạng bản dịch tại <a href="../README.vi.md">README.vi.md</a>.',
+   docHead:'Mỗi khuyến nghị trả lời hai câu hỏi: tốn những gì — và mang lại gì.',
+   docHead2:'Lợi ích cũng được phân theo người nhận: bản thân trước, rồi vợ/chồng và gia đình gần, tiếp đến bạn bè và đồng nghiệp; người xa lạ ở cuối. Ở cuối không có nghĩa là bằng không: cần cân nhắc cả khả năng thu lại lợi ích lẫn rủi ro.',
+   fbAria:'Phản hồi', fbIssueT:'Thấy lỗi hoặc muốn góp ý —', fbIssue:'mở issue', fbStarT:'Thích cuốn sách —', fbStar:'tặng repo một sao',
+   shown:'Đang hiển thị', of:'trên', loading:'Đang tải nội dung…',
+   empty:'Không có kết quả. Bỏ bớt bộ lọc hoặc tìm bằng cụm từ ngắn hơn.', reset:'Đặt lại', resetF:'Xóa bộ lọc',
+   sections:'Chương', ratioH:'Lợi ích / chi phí', ratioS:'Nhận định của tác giả; chỉ so sánh trong cùng một nhóm',
+   lensH:'Bạn nhận được gì', lensS:'Không so sánh các nhóm lợi ích với nhau',
+   gradeH:'Bằng chứng', gradeS:'Tổng hợp/thử nghiệm ngẫu nhiên · có nghiên cứu · đồng thuận', gradeA:'Mức A', gradeB:'Mức B', gradeC:'Mức C',
+   moneyH:'Tiền', timeH:'Thời gian', willH:'Ý chí',
+   money0:'Miễn phí', moneyL:'Ít', moneyM:'Nhiều', timeL:'Tiện làm', timeM:'Vài giờ', timeH2:'Hằng ngày', willN:'Không cần', willS:'Một chút', willB:'Nhiều',
+   fDispute:'chỉ mục còn tranh luận', fTodo:'chỉ mục chưa xác minh',
+   hint1:'Chọn từng chương; có thể kết hợp chi phí và bằng chứng. Trong một nhóm là “hoặc”, giữa các nhóm là “và”.',
+   hint2:'Trong mỗi chương, sắp theo lợi ích giảm dần. Tìm kiếm không đổi thứ tự.',
+   hint3:'Nội dung lấy từ <a href="../book/vi/">book/vi/</a> ({n}). Bản thử chưa được xuất bản vào đó.',
+   foot:'Mỗi mục ghi nhóm lợi ích; không so sánh các nhóm với nhau. Văn bản thuộc phạm vi công cộng (Unlicense).',
+   kCost:'Chi phí', kGain:'Lợi ích', kNote:'Ghi chú', src:'Nguồn', anchor:'Liên kết đến mục này',
+   ratioBadge:'Lợi ích/chi phí', ratioTitle:'Nhận định của tác giả về mức hiệu quả', gradeBadge:'Bằng chứng', dispute:'Còn tranh luận', todo:'Chưa xác minh',
+   ratio:{'极高':'Rất cao','高':'Cao','一般':'Thông thường'},
+   lens:{'死亡率':'Tuổi thọ','金钱':'Tiền','时间':'Thời gian và sức lực','自由':'Tự do'},
+   moneyL2:{'0':'Miễn phí','少':'Chi ít','多':'Chi đáng kể'},
+   timeL2:{'少':'Tiện làm','中':'Vài giờ','多':'Hằng ngày'},
+   willL2:{'否':'Không cần nỗ lực','些':'Một chút nỗ lực','是':'Nỗ lực nhiều'},
+   ratioFull:'Lợi ích/chi phí: ', gradeFull:'Bằng chứng: ',
+   errFile:'Hãy mở trang qua HTTP bằng <code>make serve</code>, hoặc dùng GitHub Pages.',
+   errLoad:(m)=>`Không tải được nội dung (${m}). Kiểm tra README và thư mục book/.`,
+   cap:true, allSections:'Chương', readmeHref:'README.vi.md', readmeTitle:'Mở README',
+   menuAria:'Mở bộ lọc', sideCollapse:'Thu gọn thanh bên', sideExpand:'Mở thanh bên', themeAria:'Đổi giao diện tối', ghTitle:'Mã nguồn trên GitHub', ddTitle:'Chọn ngôn ngữ',
+   metaDesc:'Bản dịch thử tiếng Việt của HowToLiveBetter: chi phí, lợi ích, bằng chứng và nguồn của từng khuyến nghị.',
+   keywords:'sức khỏe,tuổi thọ,bằng chứng,tiền,sơ cứu', author:'HowToLiveBetter (bản dịch tiếng Việt)',
+   about:['sức khỏe','tuổi thọ','tài chính cá nhân','sơ cứu','pháp luật'],
+   forkNote:'Bản dịch không chính thức. Khi có khác biệt, ưu tiên <a href="https://eternity4719.github.io/HowToLiveBetter/">bản gốc tiếng Trung</a>.',
+   snapshotNote:'Đang dịch thử; chưa có chương hoàn chỉnh.' },
  zh:{ htmlLang:'zh-CN', title:'高性价比人生指南', search:'搜索建议', searchShort:'搜索',
    noscriptH:'高性价比人生指南',
    noscriptP:'《高性价比人生指南》：31 个小节，每条建议都写明成本、收益、证据等级与原始出处。',
@@ -1081,12 +1118,12 @@ function parseReadme(md){
       continue;
     }
     if (entry){
-      if ((m = /^- (?:成本|Стоимость|Costo|Custo|Cost)[：:](.*)$/.exec(line))) entry.cost = m[1];
-      else if ((m = /^- (?:说人话|Простыми словами|En términos sencillos|Em linguagem simples|In plain terms)[：:](.*)$/.exec(line))) { entry.human = m[1]; if (T().cap) entry.human = entry.human.replace(/^\s*(.)/, (c)=>c.toUpperCase()); }
-      else if ((m = /^- (?:收益|Эффект|Beneficio|Benefício|Benefit)[：:](.*)$/.exec(line))) { entry.gain = m[1]; if (T().cap) entry.gain = entry.gain.replace(/^\s*(.)/, (c)=>c.toUpperCase()); }
-      else if ((m = /^- (?:证据等级|Уровень доказательности|Nivel de evidencia|Nível de evidência|Evidence grade)[：:]\s*([ABC])/.exec(line))) entry.grade = m[1];
-      else if ((m = /^- (?:来源|Источники|Fuentes|Fontes|Sources)[：:]?(.*)$/.exec(line))) entry.src = m[1];
-      else if ((m = /^- (?:备注|Примечания|Notas|Notes)[：:](.*)$/.exec(line))) { entry.note = m[1]; if (T().cap) entry.note = entry.note.replace(/^\s*(.)/, (c)=>c.toUpperCase()); }
+      if ((m = /^- (?:成本|Стоимость|Costo|Custo|Cost|Chi phí)[：:](.*)$/.exec(line))) entry.cost = m[1];
+      else if ((m = /^- (?:说人话|Простыми словами|En términos sencillos|Em linguagem simples|In plain terms|Nói dễ hiểu)[：:](.*)$/.exec(line))) { entry.human = m[1]; if (T().cap) entry.human = entry.human.replace(/^\s*(.)/, (c)=>c.toUpperCase()); }
+      else if ((m = /^- (?:收益|Эффект|Beneficio|Benefício|Benefit|Lợi ích)[：:](.*)$/.exec(line))) { entry.gain = m[1]; if (T().cap) entry.gain = entry.gain.replace(/^\s*(.)/, (c)=>c.toUpperCase()); }
+      else if ((m = /^- (?:证据等级|Уровень доказательности|Nivel de evidencia|Nível de evidência|Evidence grade|Mức độ bằng chứng)[：:]\s*([ABC])/.exec(line))) entry.grade = m[1];
+      else if ((m = /^- (?:来源|Источники|Fuentes|Fontes|Sources|Nguồn)[：:]?(.*)$/.exec(line))) entry.src = m[1];
+      else if ((m = /^- (?:备注|Примечания|Notas|Notes|Ghi chú)[：:](.*)$/.exec(line))) { entry.note = m[1]; if (T().cap) entry.note = entry.note.replace(/^\s*(.)/, (c)=>c.toUpperCase()); }
       continue;
     }
     if (line && !sec.intro && !line.startsWith('>')) sec.intro = line;
@@ -1096,8 +1133,9 @@ function parseReadme(md){
     e.dispute = LANG==='en' ? /^\s*Contested/.test(e.note)
               : LANG==='es' ? /^\s*En disputa/.test(e.note)
               : LANG==='pt' ? /^\s*Em disputa/.test(e.note)
+              : LANG==='vi' ? /^\s*Còn tranh luận/.test(e.note)
               : /^\s*(争议|[Сс]порно)/.test(e.note);
-    e.todo = /待核实|TODO|to be verified/i.test(e.src + e.gain + e.note + e.cost);
+    e.todo = /待核实|TODO|to be verified|chưa xác minh/i.test(e.src + e.gain + e.note + e.cost);
     e.cs = (COST_W.money[e.money] ?? 0) + (COST_W.time[e.time] ?? 0) + (COST_W.will[e.will] ?? 0);
     e.ratio = e.level === '大' ? (e.cs === 0 ? '极高' : (e.cs <= 2 ? '高' : '一般'))
             : e.level === '中' ? (e.cs === 0 ? '高' : '一般') : '一般';

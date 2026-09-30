@@ -105,6 +105,8 @@ def _post_check(text, lang, base_url, timeout):
 
 
 def check_text(text, lang, base_url=DEFAULT_BASE_URL, timeout=DEFAULT_TIMEOUT):
+    # Unsupported locales must not silently pass with zero extracted segments.
+    lt_language_code(lang)
     segments = extract_plain_segments(text, lang)
     if not segments:
         return []

@@ -28,10 +28,12 @@ def site_langs(root=None):
     return [e["code"] for e in load_langs(root) if e.get("code")]
 
 
-def translation_langs(root=None):
-    """Overlay translation codes (book/<code>/), not the zh mirror at book/."""
+def translation_langs(root=None, *, include_pilots=True):
+    """Overlay codes, optionally excluding unpublished pilots for bulk gates."""
     out = []
     for entry in load_langs(root):
+        if not include_pilots and entry.get("publication") == "pilot":
+            continue
         code = entry.get("code")
         content_root = entry.get("contentRoot", "")
         if code and content_root.startswith("book/") and content_root != "book":

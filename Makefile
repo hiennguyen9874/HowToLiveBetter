@@ -48,7 +48,7 @@ check-commit-msg:  ## Validate a message: make check-commit-msg MSG='fix: …'
 ifeq ($(origin LANG),command line)
 QUALITY_LANGS := $(LANG)
 else
-QUALITY_LANGS := $(shell $(PY) -c 'from translate.lib.config import translation_langs; print(" ".join(translation_langs()))')
+QUALITY_LANGS := $(shell $(PY) -c 'from translate.lib.config import translation_langs; print(" ".join(translation_langs(include_pilots=False)))')
 endif
 
 quality:  ## Content quality (readability + style --book). Usage: make quality [LANG=ru]
@@ -190,7 +190,7 @@ ebook-pdf: ebook-deps  ## Build one PDF. Usage: make ebook-pdf LANG=en
 	node forge/ebook/pdf/build.mjs --lang $(LANG)
 
 ebooks: ebook-deps ebook-test  ## Build EPUB+PDF for every language in langs.json
-	@for lang in $$(python3 -c 'import json; print(" ".join(x["code"] for x in json.load(open("translate/langs.json"))["languages"]))'); do \
+	@for lang in $$(python3 -c 'import json; print(" ".join(x["code"] for x in json.load(open("translate/langs.json"))["languages"] if x.get("publication") != "pilot"))'); do \
 		node forge/ebook/epub/build.mjs --lang $$lang; \
 		node forge/ebook/pdf/build.mjs --lang $$lang; \
 	done

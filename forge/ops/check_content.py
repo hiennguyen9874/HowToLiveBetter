@@ -88,8 +88,39 @@ def translated_dirs():
     return dirs
 
 
+def publication_entries(issues):
+    """Exclude explicit unpublished pilots, not published chapter content.
+
+    Pilots cannot have book chapter files or manifest completion claims.
+    CJK, filename and empty-field gates still cover every registered locale.
+    """
+    entries = []
+    manifest = json.load(open(os.path.join(ROOT, "translations.json"), encoding="utf-8"))
+    for entry in load_langs(ROOT):
+        if entry.get("publication") != "pilot":
+            entries.append(entry)
+            continue
+        code = entry["code"]
+        chapter_files = glob.glob(os.path.join(ROOT, entry["contentRoot"], "[0-9][0-9]-*.md"))
+        claims = manifest.get(code, {})
+        if entry.get("primary") or entry["contentRoot"] == "book":
+            issues.append(f"[pilot] {code}: primary/source language cannot be a pilot")
+        if chapter_files or any(
+            row.get("status") == "complete" or row.get("file") or row.get("verified")
+            for row in claims.values()
+        ):
+            issues.append(
+                f"[pilot] {code}: published content/completion claim requires removing publication=pilot"
+            )
+        if not os.path.isfile(os.path.join(ROOT, entry["readme"])):
+            issues.append(f"[pilot] {code}: missing status README")
+        print(f"[pilot] {code}: unpublished; full-corpus parity/stats not applicable")
+    return entries
+
+
 def gate_parity(issues):
-    codes = translation_langs(ROOT)
+    entries = publication_entries(issues)
+    codes = [entry["code"] for entry in entries if entry["contentRoot"] != "book"]
     cn = chapter_nns("book")
     expected = sorted(set(cn))
     marker = os.path.join(ROOT, "docs", ".retranslate-pending")
@@ -138,7 +169,7 @@ def gate_parity(issues):
                 issues.append(f"[parity] ch.{nn} item counts differ: {counts}")
     readme_expect = {}
     docs_expect = {}
-    for entry in load_langs(ROOT):
+    for entry in entries:
         readme = entry["readme"]
         readme_expect[readme] = entry["contentRoot"].rstrip("/") + "/"
         if entry["contentRoot"] == "book":
@@ -251,7 +282,9 @@ def gate_stats(issues):
     retranslate_pending = os.path.exists(marker) and any(
         ln.strip() and not ln.startswith("#") for ln in open(marker, encoding="utf-8")
     )
-    for rf in (entry["readme"] for entry in load_langs(ROOT)):
+    for rf in (
+        entry["readme"] for entry in load_langs(ROOT) if entry.get("publication") != "pilot"
+    ):
         text = open(os.path.join(ROOT, rf), encoding="utf-8").read()
         for label, val in computed.items():
             if str(val) not in text:
