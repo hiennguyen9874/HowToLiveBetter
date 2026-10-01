@@ -460,6 +460,15 @@ def fold_words(text):
     return WORD_RX.sub(rep, text)
 
 
+# Vietnamese scale words. Guards skip homographs: «tỷ lệ» (rate), «tỷ số» (ratio),
+# «tỷ trọng» (share), «triệu chứng» (symptom), «triệu tập» (convene), «triệu hồi» (recall).
+_VI_SCALES = (
+    r"(?:nghìn|ngàn)\s+tỷ(?!\s*(?:lệ|số|trọng))|tỷ(?!\s*(?:lệ|số|trọng))|"
+    r"triệu(?!\s*(?:chứng|tập|hồi))|nghìn|ngàn"
+)
+_VI_SCALE_TABLE = [("tỷ", 1e9), ("triệu", 1e6), ("nghìn", 1e3), ("ngàn", 1e3)]
+
+
 def norm_numbers(text, lang=None, *, ru=False, es=False):
     """Multiset of ABSOLUTE numeric values: scale-words are folded into the value.
 
@@ -534,6 +543,16 @@ def norm_numbers(text, lang=None, *, ru=False, es=False):
         text = re.sub(r"(?<=\d) (?=\d{3}(?!\d))", "", text)
     else:
         text = re.sub(r"(?<=\d),(?=\d{3}(?!\d))", "", text)
+    if lang == "vi":
+        # Vague magnitudes mirror the CN normaliser: «数十万» → 100000,
+        # «一两百» → «100 200».
+        text = re.sub(r"hàng\s+trăm\s+(?:nghìn|ngàn)", "100000", text, flags=re.IGNORECASE)
+        text = re.sub(
+            r"(?<!\w)một(?:\s+(?:đến|tới)\s+|\s*[–—-]\s*|\s+)hai\s+trăm(?!\w)",
+            "100 200",
+            text,
+            flags=re.IGNORECASE,
+        )
     text = fold_words(text)
 
     if lang == "pt":
@@ -547,6 +566,8 @@ def norm_numbers(text, lang=None, *, ru=False, es=False):
             r"тыс\.?|млн\.?|млрд\.?|трлн\.?|thousand|million|billion|тысяч|"
             r"миллион|миллиард|триллион|trillion|millones|millón|billones|mil"
         )
+    if lang == "vi":
+        distrib_scales += f"|{_VI_SCALES}"
     _distrib = re.compile(
         r"(\d+(?:\.\d+)?)((?:\s+(?:до|and|to|a|de)\s*|\s*[–—-]\s*)\d+(?:\.\d+)?)"
         rf"\s*({distrib_scales})\b",
@@ -639,6 +660,10 @@ def norm_numbers(text, lang=None, *, ru=False, es=False):
             r"mil\s+millones|mil\s+millón|mil\s+millon|millones|millón\b|"
             r"billones|billón\b|trillones|mil\b"
         )
+    if lang == "vi":
+        # «tỷ» is 10^9 (亿 is 10^8). Longest first: «nghìn tỷ» before «nghìn»/«tỷ».
+        scale = [("nghìn tỷ", 1e12), ("ngàn tỷ", 1e12), *scale, *_VI_SCALE_TABLE]
+        romance_scales = f"{_VI_SCALES}|{romance_scales}"
     out = []
     for m in re.finditer(
         r"(\d+(?:\.\d+)?)\s*[多余]?\s*(万亿|千万|百万|万|亿|千(?![卡克瓦赫])|百)\s*[多余]?|"
@@ -651,7 +676,7 @@ def norm_numbers(text, lang=None, *, ru=False, es=False):
         g_num, g_scale = (m.group(1), m.group(2)) if m.group(1) else (m.group(3), m.group(4))
         v = float(g_num)
         if g_scale:
-            key = g_scale.lower().rstrip(".")
+            key = re.sub(r"\s+", " ", g_scale.lower().rstrip("."))
             v *= next((f for k, f in scale if key.startswith(k)), 1)
         s = f"{v:.15g}"
         if re.search(r"\.(\d*?)((?:0{6}|9{6})\d*)$", s):

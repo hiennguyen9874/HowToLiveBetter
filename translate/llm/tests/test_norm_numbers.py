@@ -76,3 +76,30 @@ class TestNormNumbersPortuguese(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestNormNumbersVi(unittest.TestCase):
+    def test_ty_is_billion(self):
+        assert norm_numbers("1.3 tỷ người", lang="vi") == ["1300000000"]
+        assert norm_numbers("8.65 tỷ", lang="vi") == ["8650000000"]
+
+    def test_nghin_ty_is_trillion(self):
+        assert norm_numbers("2.3 nghìn tỷ", lang="vi") == ["2300000000000"]
+
+    def test_trieu_and_nghin(self):
+        assert norm_numbers("2.38 triệu người", lang="vi") == ["2380000"]
+        assert norm_numbers("2 nghìn", lang="vi") == ["2000"]
+
+    def test_homograph_guards(self):
+        assert norm_numbers("5 tỷ lệ", lang="vi") == ["5"]
+        assert norm_numbers("3 triệu chứng", lang="vi") == ["3"]
+
+    def test_vague_magnitudes_match_cn(self):
+        assert norm_numbers("hàng trăm nghìn", lang="vi") == norm_numbers("数十万")
+        assert norm_numbers("một hai trăm", lang="vi") == ["100", "200"]
+
+    def test_range_distributes_scale(self):
+        assert norm_numbers("60–75 triệu", lang="vi") == ["60000000", "75000000"]
+
+    def test_vi_scale_not_leaked_to_other_langs(self):
+        assert norm_numbers("1.3 tỷ") == ["1.3"]
