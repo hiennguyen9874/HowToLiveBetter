@@ -3,6 +3,17 @@
 OpenAI-compatible client: one digest unit → `translate/runs/.../units/*.md`.
 Never write into `translate/digest/`.
 
+## Existing Gemma server / Vietnamese whole-book drafts
+
+The client is model-independent. `.env.example` now defaults to the existing
+`gemma-4-31b-qat` server at `http://127.0.0.1:8080/v1`.
+See [Gemma Vietnamese setup and commands](../../docs/pipeline/gemma-vi.md).
+`make translate-book` translates Chinese units sequentially with resume,
+assembles outside `book/`, and runs Chinese-based integrity verify.
+`HTLB_LLM_MAX_TOKENS` (default 4096) and `HTLB_LLM_TIMEOUT` (default 300 seconds)
+are configurable; truncated/non-normal completions are rejected.
+Do not run the Hy-MT2 startup instructions below when Gemma already occupies 8080.
+
 Canonical wave workdir: `translate/runs/active/<lang>/<NN>/` (parent of `units/`).
 Other wave names under `translate/runs/<wave>/...` are fine; `status.py` / `wave_pipeline.py` prefer `active`.
 

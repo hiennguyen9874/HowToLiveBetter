@@ -12,7 +12,7 @@ live in [`docs/pipeline/`](../docs/pipeline/).
 | `translate/lib/` | shared config / labels / paths |
 | `translate/shelf/` | `style_check`, `readability`, `lt_check` (required LT after verify) |
 | `translate/ops/` | `status`, `wave_pipeline`, `watchdog` |
-| `translate/llm/` | Hy-MT2 client (`HTLB_LLM_*` → `:8080`) |
+| `translate/llm/` | OpenAI-compatible local client (Gemma / Hy-MT2, `HTLB_LLM_*` → `:8080`) |
 | `translate/laya/` | clarity for polish (`:8090`) |
 
 Output dirs `translate/digest/` and `translate/runs/` are gitignored.
@@ -64,6 +64,12 @@ flowchart LR
 Research CLIs under `validate/research/` are calibration only — not on this flow.
 
 ### Vietnamese pilot
+
+For sequential, resumable whole-book **Chinese → Vietnamese drafts** with an
+existing Gemma llama.cpp server, see [Gemma VI commands](../docs/pipeline/gemma-vi.md).
+Entry point: `make translate-book ARGS='--check'`, then
+`make translate-book ARGS='--keep-going'`. Outputs stay in `translate/runs/gemma/vi/`;
+no automatic publication or completion claims.
 
 See [docs/pipeline/vi-pilot.md](../docs/pipeline/vi-pilot.md) and the
 [reviewed chapter 01 sample](../docs/pipeline/vi-ch01-pilot.md).

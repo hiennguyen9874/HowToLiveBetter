@@ -9,7 +9,7 @@ RUFF = .venv/bin/ruff
 DJLINT = .venv/bin/djlint
 YAMLLINT = .venv/bin/yamllint
 
-.PHONY: help sync-upstream digest assemble verify verify-all wave status lint format test test-integration ci og og-html update-readme hooks check-commit-msg pages-artifact serve web-build quality style triage clarity polish lt check-content check-links ebook-deps ebook-test ebook-epub ebook-pdf ebooks
+.PHONY: help sync-upstream digest translate-book assemble verify verify-all wave status lint format test test-integration ci og og-html update-readme hooks check-commit-msg pages-artifact serve web-build quality style triage clarity polish lt check-content check-links ebook-deps ebook-test ebook-epub ebook-pdf ebooks
 
 # Locale list must stay in sync with translate/langs.json (registry).
 OG_HTML = forge/og/en.html forge/og/ru.html forge/og/es.html forge/og/zh.html forge/og/pt.html
@@ -87,6 +87,9 @@ endif
 digest:  ## Split CN chapter into units. Usage: make digest CH=01
 	@[ -n "$(CH)" ] || (echo "Usage: make digest CH=NN" && exit 1)
 	$(PY) translate/steps/digest/make_digest.py $(CH_PAD)
+
+translate-book:  ## Sequential resumable ZH → VI drafts. Usage: make translate-book [ARGS='--chapters 01 --keep-going']
+	$(PY) -m translate.ops.translate_book $(ARGS)
 
 # ── Assemble ───────────────────────────────────────────────────
 
