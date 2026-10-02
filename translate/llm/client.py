@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import math
 import os
 import time
 import urllib.error
@@ -56,6 +57,17 @@ def _temperature() -> float:
         raise LLMError(f"HTLB_LLM_TEMPERATURE must be a number, got {raw!r}") from e
 
 
+def _positive_env(name: str, default: int) -> int:
+    raw = os.environ.get(name, str(default)).strip()
+    try:
+        value = int(raw)
+    except ValueError as e:
+        raise LLMError(f"{name} must be a positive integer") from e
+    if value <= 0:
+        raise LLMError(f"{name} must be a positive integer")
+    return value
+
+
 def _completions_url(base_url: str) -> str:
     base = base_url.rstrip("/")
     if base.endswith("/chat/completions"):
@@ -66,7 +78,7 @@ def _completions_url(base_url: str) -> str:
 def chat(
     messages: list[dict[str, str]],
     *,
-    max_tokens: int = 4096,
+    max_tokens: int | None = None,
     base_url: str | None = None,
     model: str | None = None,
     api_key: str | None = None,
@@ -81,8 +93,12 @@ def chat(
         model = _require_env("HTLB_LLM_MODEL")
     if temperature is None:
         temperature = _temperature()
+    if not math.isfinite(temperature) or temperature < 0:
+        raise LLMError("temperature must be finite and non-negative")
+    if max_tokens is None:
+        max_tokens = _positive_env("HTLB_LLM_MAX_TOKENS", 4096)
     if timeout is None:
-        timeout = TIMEOUT_SEC
+        timeout = _positive_env("HTLB_LLM_TIMEOUT", TIMEOUT_SEC)
     if api_key is None and not explicit:
         api_key = _require_env("HTLB_LLM_API_KEY")
     key = (api_key or "").strip()
@@ -110,6 +126,9 @@ def chat(
             with urllib.request.urlopen(req, timeout=timeout) as resp:  # noqa: S310
                 status = resp.getcode()
                 raw = resp.read().decode("utf-8")
+        except urllib.error.HTTPError as e:
+            snippet = e.read().decode("utf-8", errors="replace")[:500]
+            raise LLMError(f"LLM HTTP {e.code}: {snippet}") from e
         except (TimeoutError, urllib.error.URLError) as e:
             last_err = e
             if attempt < MAX_RETRIES:
@@ -129,6 +148,23 @@ def chat(
         choices = data.get("choices") or []
         if not choices:
             raise LLMError("LLM response missing choices")
+        finish = choices[0].get("finish_reason")
+        if finish == "length":
+            usage = data.get("usage") or {}
+            message = choices[0].get("message") or {}
+            reasoning = message.get("reasoning_content") or ""
+            raise LLMError(
+                "LLM output truncated (finish_reason=length); "
+                f"requested_max_tokens={max_tokens}, "
+                f"prompt_tokens={usage.get('prompt_tokens', 'unknown')}, "
+                f"completion_tokens={usage.get('completion_tokens', 'unknown')}, "
+                f"reasoning_chars={len(reasoning)}; increase HTLB_LLM_MAX_TOKENS "
+                "and check server context capacity before retrying. "
+                "Batch resume fingerprints settings/client code: use a new --run-root "
+                "or explicit --overwrite after changes"
+            )
+        if finish not in (None, "stop"):
+            raise LLMError(f"LLM did not finish normally: {finish}")
         message = choices[0].get("message") or {}
         content = message.get("content")
         if content is None:

@@ -195,3 +195,18 @@ China-context rules above are identical; field labels differ.
   in forge/ops/check_content.py — landed 2026-09-21 (branch translation/es-w1)
 - Pilot: chapters 01 + 13 (write-first subagents, workdirs `translate/runs/active/es/{01,13}` — legacy `/root/htlb-run-es/` retired)
 - Waves: chapters 02–12, 14–32 (5–6 per wave), then 4 docs articles in docs/es/
+
+## Vietnamese (VI) — pilot conventions
+
+- Neutral, natural Vietnamese; preserve the Chinese setting, conditions and claim strength.
+- Fields: `Chi phí`, `Nói dễ hiểu`, `Lợi ích`, `Mức độ bằng chứng`, `Nguồn`, `Ghi chú`.
+- Source text and cost-tag comments remain byte-identical after the localized label.
+- Use digits, decimal dots and no thousands separators during the pilot (e.g. `248099`, `17.4`, `100000`); expand Chinese scale units without changing values.
+- Currency remains CNY / nhân dân tệ, never silently convert to VND.
+- First line: `> Bản dịch không chính thức của [bản gốc tiếng Trung](../NN-original.md). Khi có khác biệt, ưu tiên bản gốc tiếng Trung.`
+- Back-link for published chapters: `[← Quay lại mục lục](../../README.vi.md)`.
+- Published filename scheme: `book/vi/NN-Ascii-Title-Slug.md` (e.g. `01-Dung-Chet-Som.md`).
+- Clearly mark insertions as `> Ghi chú người dịch:`. Do not replace Chinese laws or emergency numbers with Vietnamese equivalents.
+- Pilot outputs stay outside `book/vi/`, use explicit `--items` / `--file` and never stamp full-chapter completion.
+- Vietnamese LanguageTool and readability checks are not configured/calibrated yet; Laya polish has not been validated for Vietnamese. Do not report these gates as passed.
+- Pilot commands and review: [docs/pipeline/vi-pilot.md](docs/pipeline/vi-pilot.md).

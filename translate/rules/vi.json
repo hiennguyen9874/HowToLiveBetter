@@ -1,0 +1,16 @@
+{
+  "_comment": "Vietnamese pilot pack. Style patterns are advisory; no calibrated readability score is available yet.",
+  "labels": {
+    "cn": ["成本", "说人话", "收益", "证据等级", "备注"],
+    "vi": ["Chi phí", "Nói dễ hiểu", "Lợi ích", "Mức độ bằng chứng", "Ghi chú"]
+  },
+  "source_label": "Nguồn",
+  "evidence_grade_label": "Mức độ bằng chứng",
+  "banned_calques": [],
+  "style_markers": [
+    {"pattern": "(?i)\\btiến hành thực hiện\\b", "label": "wordy-action", "note": "Prefer a direct verb."},
+    {"pattern": "(?i)\\bcần phải lưu ý rằng\\b", "label": "wordy-note", "note": "Prefer a short direct statement."}
+  ],
+  "whitelist_zones": ["- Lợi ích:", "- Ghi chú:", "- Nguồn:", "- Mức độ bằng chứng:", "<!-- 成本标签"],
+  "soft_calques": []
+}

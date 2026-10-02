@@ -687,5 +687,14 @@
       "file": "34-Cuidado-ao-usar-os-medicamentos-que-tem-em-casa.md",
       "verified": null
     }
+  },
+  "vi": {
+    "01": {
+      "status": "in_progress",
+      "file": null,
+      "verified": null,
+      "pilot_items": [1, 2, 3],
+      "pilot_file": "docs/pipeline/vi-ch01-pilot.md"
+    }
   }
 }

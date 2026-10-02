@@ -23,6 +23,7 @@ _LANG_NAMES = {
     "en": "English",
     "es": "Spanish",
     "pt": "Brazilian Portuguese",
+    "vi": "Vietnamese",
 }
 
 LOCALE_FIELD_HINTS = {
@@ -119,7 +120,7 @@ def inject_mechanical_markers(text: str, uu: str) -> str:
     return "\n".join(out) + "\n"
 
 
-def validate_unit(text: str, uu: str, lang: str) -> list[str]:
+def validate_unit(text: str, uu: str, lang: str, *, chapter: str | None = None) -> list[str]:
     """Structural gate after marker inject (items) or strip (intro)."""
     errs: list[str] = []
     fields = REQUIRED_FIELDS[lang]
@@ -129,8 +130,13 @@ def validate_unit(text: str, uu: str, lang: str) -> list[str]:
             errs.append("intro must not contain §TAG§/§SRC§")
         if re.search(r"^### ", text, re.MULTILINE):
             errs.append("intro must not use ### (item) heading")
-        if not re.search(r"^# ", text, re.MULTILINE):
-            errs.append("intro missing # chapter title")
+        headings = re.findall(r"^#{1,6}\s+.*$", text, re.MULTILINE)
+        if len(headings) != 1 or not headings[0].startswith("# "):
+            errs.append("intro needs exactly one # chapter title and no extra headings")
+        if chapter is not None and not re.search(
+            rf"^# 0*{int(chapter)}\.\s+\S", text, re.MULTILINE
+        ):
+            errs.append(f"intro title must preserve chapter number {int(chapter)}")
         errs.extend(
             f"intro must not invent field {lab}"
             for lab in fields
@@ -152,17 +158,33 @@ def validate_unit(text: str, uu: str, lang: str) -> list[str]:
         errs.append(f"need exactly one ### heading (got {len(heads)})")
     else:
         m = re.match(r"^### (\d+)\.", heads[0])
-        if m and int(m.group(1)) != int(uu):
+        if not m:
+            errs.append("item heading must be numbered: ### N. Title")
+        elif int(m.group(1)) != int(uu):
             errs.append(f"heading number {m.group(1)} != unit {uu}")
+
+    all_heads = re.findall(r"^#{1,6}\s+.*$", text, re.MULTILINE)
+    if len(all_heads) != 1:
+        errs.append("item must not contain extra headings")
+    first_line = text.strip().splitlines()[0] if text.strip() else ""
+    if not re.match(rf"^### 0*{int(uu)}\.\s+\S", first_line):
+        errs.append("first nonblank line must be the numbered ### item heading")
 
     if _BOLD_FIELD.search(text):
         errs.append("bold **Label:** fields forbidden; use - Label:")
 
-    errs.extend(
-        f"missing {lab}"
-        for lab in fields
-        if not re.search(rf"^{re.escape(lab)}", text, re.MULTILINE)
-    )
+    for lab in fields:
+        values = re.findall(rf"^{re.escape(lab)}([^\n]*)$", text, re.MULTILINE)
+        if not values:
+            errs.append(f"missing {lab}")
+        elif len(values) != 1:
+            errs.append(f"duplicate {lab}")
+        elif not values[0].strip():
+            errs.append(f"empty {lab}")
+    actual_fields = re.findall(r"^- ([^:\n]+):", text, re.MULTILINE)
+    expected_fields = [lab[2:-1] for lab in fields]
+    if actual_fields != expected_fields:
+        errs.append("fields must appear exactly once in the required order; no extra fields")
 
     return errs
 
@@ -203,6 +225,15 @@ def build_messages(
                 "",
             ]
         )
+    if lang == "vi":
+        user_parts.extend(
+            [
+                "Use natural, neutral Vietnamese. Preserve the Chinese context and all conditions.",
+                "Keep numerical values in digits, including converted Chinese scale units; use decimal dots and no thousands separators.",
+                "Do not add Vietnamese emergency numbers, laws, or medical advice.",
+                "For intro 00 use ../../README.vi.md for the table-of-contents back-link. The human editor will add the unofficial-translation status line.",
+            ]
+        )
     user_parts.append("Output ONLY the translated unit markdown — no preamble, no fences.")
     user_parts.append("")
     if gloss:
@@ -219,6 +250,11 @@ def atomic_write(path: Path, text: str) -> None:
     tmp = path.with_suffix(path.suffix + ".tmp")
     tmp.write_text(text, encoding="utf-8")
     os.replace(tmp, path)
+
+
+def translation_prompt(root: Path, lang: str) -> Path:
+    name = "translate-unit-vi.md" if lang == "vi" else "translate-unit.md"
+    return root / "translate" / "prompts" / name
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -254,7 +290,7 @@ def main(argv: list[str] | None = None) -> int:
     gloss_path = digest_unit.with_suffix(".gloss.md")
     gloss = gloss_path.read_text(encoding="utf-8") if gloss_path.is_file() else None
 
-    prompt_path = root / "translate" / "prompts" / "translate-unit.md"
+    prompt_path = translation_prompt(root, args.lang)
     if not prompt_path.is_file():
         raise SystemExit(f"prompt missing: {prompt_path}")
     prompt_template = prompt_path.read_text(encoding="utf-8")
@@ -272,7 +308,7 @@ def main(argv: list[str] | None = None) -> int:
             return 1
         translated = strip_fence(translated)
         translated = inject_mechanical_markers(translated, uu)
-        last_errs = validate_unit(translated, uu, args.lang)
+        last_errs = validate_unit(translated, uu, args.lang, chapter=nn)
         if not last_errs:
             break
         print(

@@ -70,6 +70,7 @@ class TestWavePipelineMain(unittest.TestCase):
                 rc = wave_pipeline.main(["02"])
 
         self.assertEqual(rc, 0)
+        # Unpublished pilots must not block ordinary publication waves.
         expected = {"ru", "en", "es", "pt"}
         self.assertEqual(len(assemble_calls), len(expected))
         self.assertEqual(len(verify_calls), len(expected))
