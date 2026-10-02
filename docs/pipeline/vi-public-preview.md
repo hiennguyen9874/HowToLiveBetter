@@ -8,9 +8,10 @@ Vietnamese ebook publication remain unchanged.
 
 ## Snapshot and build
 
-Branch: `preview/vi-drafts` (branched from `feat/gemma-vi-runner`). It therefore
-includes the runner's existing commits; keep tooling review/publication separate
-when opening PRs, or rebase/cherry-pick after the tooling PR is accepted.
+Branch: `preview/vi-drafts`. The pilot/runner dependency was squash-merged
+separately in the fork's PR #1 after GitHub CI passed. The preview-only commit
+was then rebased onto the updated fork `main`, and PR #2 retargeted to `main`.
+No PR targets the original author's repository.
 
 - Tracked draft snapshots: `preview/vi/01.md` through `34.md`.
 - Provenance: `preview/vi/snapshot.json` records assembled/snapshot hashes and
@@ -50,11 +51,12 @@ host or a PR to the original author. Target repository:
 `hiennguyen9874/HowToLiveBetter` (remote `origin`). Expected preview URL:
 `https://hiennguyen9874.github.io/HowToLiveBetter/vi/preview/`.
 
-The user approved commit, push and internal PR creation. Preparing/opening a PR
-**does not deploy it**; merge approval remains separate. Publication must follow
-branch → internal PR → CI → squash merge to the fork's `main`; the existing
-Pages workflow then deploys the tested main-site artifact. GitHub Pages must be
-enabled for the fork with GitHub Actions as the build source.
+The user approved commit/push/internal PR creation, enabled Actions for the
+fork and requested continuation of the deployment using `gh`. Pages is
+configured to build using GitHub Actions. Preparing/opening a PR **does not
+deploy it**: publication follows branch → internal PR → green CI → squash merge
+to the fork's `main`. The existing Pages workflow then deploys the tested
+main-site artifact; verify the live preview after it succeeds.
 
 The existing Pages workflow automatically deploys only after CI succeeds on
 `main`. Its manual dispatch can deploy another ref, but it uses the **same
