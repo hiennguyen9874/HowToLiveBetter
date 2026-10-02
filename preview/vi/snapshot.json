@@ -1,0 +1,349 @@
+{
+  "lang": "vi",
+  "publication": "pilot",
+  "public_preview": true,
+  "quality_approval": false,
+  "remaining_reviews_waived_for_preview_only": true,
+  "chapters": [
+    {
+      "chapter": "01",
+      "source": "translate/runs/gemma/vi/01/assembled.md",
+      "assembled_sha256": "0cffbee186bc67f8855202aa94e02bf39c378e686be1de13be144b915f222979",
+      "snapshot_sha256": "b4133fe017fc0dbd662c1b6f6a6f1b5a247b1a708cee3d579df7c37c473660cf",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "02",
+      "source": "translate/runs/gemma/vi/02/assembled.md",
+      "assembled_sha256": "718b84fc77664ca3e4b7bcc881138c08b257e085b509befb8aa8058f5de844c4",
+      "snapshot_sha256": "13dc77db4926d0ef42a923db105d218274f55347248262556f815c06107b0c93",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "03",
+      "source": "translate/runs/gemma/vi/03/assembled.md",
+      "assembled_sha256": "42ba8781914f39a5c0bded54cfa06be7f04bedfe224393798878d55cb08e743b",
+      "snapshot_sha256": "4d915f79e8c552ff5a271af7b3995ffc78a303235773a7784dfbed87853959d2",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "04",
+      "source": "translate/runs/gemma/vi/04/assembled.md",
+      "assembled_sha256": "24e6c4275321fdd12860e3f1e0729a533a73beca0f7b678b82203f3045c6e169",
+      "snapshot_sha256": "15e5d54a361b29f8e5c1c5fe9c255286ebfbeee8d874668579c77d8034717ccd",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "05",
+      "source": "translate/runs/gemma/vi/05/assembled.md",
+      "assembled_sha256": "642458c0d89f7a0a3ffa836f002eafe64c7a94d271604232d3fb49a3838cdd73",
+      "snapshot_sha256": "6a6a03fb3976cf96c0e9f329edb8990d47f2e10e0073002a541e539aafba2e3e",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "06",
+      "source": "translate/runs/gemma/vi/06/assembled.md",
+      "assembled_sha256": "f4716483a3999c73d841830b6760ae182876cb95e78065a97e7f1c72592c9a20",
+      "snapshot_sha256": "6f2cf4c2804fd77565645a545c800065eb8d5b20f12187e1356d0c54166339a8",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "07",
+      "source": "translate/runs/gemma/vi/07/assembled.md",
+      "assembled_sha256": "e72500348e33e4e37b2ea5ded827767767519c838c74bfb2c35d657c322c05e1",
+      "snapshot_sha256": "c4c8219a18f397d508462639759b5257896a191c01871ea894c31fdec568552e",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "08",
+      "source": "translate/runs/gemma/vi/08/assembled.md",
+      "assembled_sha256": "4c887ab054596105bae1c2668ad24ea5047c128d5b9be89f409169299ba7265f",
+      "snapshot_sha256": "4639e7651158e06fb343b0c2467be4b3dd5e99287792a2a0fa8f0ee823a675b1",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "09",
+      "source": "translate/runs/gemma/vi/09/assembled.md",
+      "assembled_sha256": "da5e398b767abcba2bd59ac5af9ca2c7c546779c2e12d6ed73d768467e5fa95e",
+      "snapshot_sha256": "4e79f41a8061d8d21a451657af7db36e09a53e3425aef5538cbb2c1bfa185c94",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "10",
+      "source": "translate/runs/gemma/vi/10/assembled.md",
+      "assembled_sha256": "7d16b36acc671800b20ea89128d57b4cc7d3f7836336ca43120088926ad78675",
+      "snapshot_sha256": "be3a3e88409ca91600ad31b0ca2e08a504cab4ec4d07c66aa5b603025479784d",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "11",
+      "source": "translate/runs/gemma/vi/11/assembled.md",
+      "assembled_sha256": "b0d0e9d060ebaea7f1178289129b86474b7aff87c28893ff23b49576afc7a77f",
+      "snapshot_sha256": "0e3f5bfc7b8e56f70299722825ff106402bb2364efaa09a8d3fe29d4079d1e1e",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "12",
+      "source": "translate/runs/gemma/vi/12/assembled.md",
+      "assembled_sha256": "d2a72cd7c284b57e7fef3c018cc8ec702fbd74698bb37fd2f3d967085a550ef9",
+      "snapshot_sha256": "784fd4c131cad1740e2662edeaab0f6aaefa1a3e4fb94dafa75491eca85875cd",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "13",
+      "source": "translate/runs/gemma/vi/13/assembled.md",
+      "assembled_sha256": "b1b34fd601efb86e8a14ca5e5eae20d4546ac791a02e1460ae670070508f8181",
+      "snapshot_sha256": "9bd3dcc572dfc65e9144b3faf71b1d50a1109418340d27fae079785764d60f59",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "14",
+      "source": "translate/runs/gemma/vi/14/assembled.md",
+      "assembled_sha256": "3cd1b669bb7a97f8e1ebb3ee0ae5c789e1cef0939539f40bf30672c16be70b93",
+      "snapshot_sha256": "e16cf347b10d9f4dfbb90f75e64584e3b8e729968d1bf3a2dec904a9435e8565",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "15",
+      "source": "translate/runs/gemma/vi/15/assembled.md",
+      "assembled_sha256": "4a2d29c19ac238767acf6135d738d995591377ffec209324744a76dd181284f0",
+      "snapshot_sha256": "8ed0974bfb650f1f2cc8a8dacd718cc4ccb18a5e6e637978bfbc45360629923c",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "16",
+      "source": "translate/runs/gemma/vi/16/assembled.md",
+      "assembled_sha256": "f745ec2a34ac65c0874bf56b38fb92412838f82d9a348c908081c98d9f822eb5",
+      "snapshot_sha256": "ecd6bf6453103cda28decb42397fd287e49465cfe3c3e3f34deb39bb01bf59ab",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "17",
+      "source": "translate/runs/gemma/vi/17/assembled.md",
+      "assembled_sha256": "7becd93bd8bfd62c395e5e8eeb773e491b39962ed0d41d3b690bf4597e96c5d7",
+      "snapshot_sha256": "9bfc256c610d8fd29d716b416087f9b414cbb2afee7014501b685eebe67de0d8",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "18",
+      "source": "translate/runs/gemma/vi/18/assembled.md",
+      "assembled_sha256": "7651604400505c6ed773e574a52e0b1d6cbac365f9899620df4865e669fa72fd",
+      "snapshot_sha256": "7a4c656eaa22854214612f28ce16cc124e66f03cad0cc7f943910befa731a2cb",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "19",
+      "source": "translate/runs/gemma/vi/19/assembled.md",
+      "assembled_sha256": "1d4ee8384fa789460331df2e9f8532bba2b2142d034ae44d76f3fdca8041fc1e",
+      "snapshot_sha256": "e24e97d2d6a5d281c5cb39c68b7c36b0944cbf9700c9907261bad70c187ca273",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "20",
+      "source": "translate/runs/gemma/vi/20/assembled.md",
+      "assembled_sha256": "7ed4f8c4c79a406b7fc9b2f0cfaf09e68563f41708e691ab533cd067d6aeaa54",
+      "snapshot_sha256": "ef49c4f1c183fd577f673fcd43b05987518205d1eb8a5914ddaf54e9879f33e9",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "21",
+      "source": "translate/runs/gemma/vi/21/assembled.md",
+      "assembled_sha256": "466f1d908ae1d9308a12aac5c11b68df22a3673123194204adae8c37f5836fbd",
+      "snapshot_sha256": "e26200308a03ef404459e683ea3ccfc61443706a69315c4e10b1641fdd698822",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "22",
+      "source": "translate/runs/gemma/vi/22/assembled.md",
+      "assembled_sha256": "dca71148bd2dfe98974b9b17742c16b1c228b484dec7408cc18e0dc48ee24920",
+      "snapshot_sha256": "6923c0f5aab137cba3904e1c59e7b0b4da6f321d8d8d9251742b6397908d3369",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "23",
+      "source": "translate/runs/gemma/vi/23/assembled.md",
+      "assembled_sha256": "e1112d64ff9ffe36893f2589b0fdaf89da7d3363c6e931477b0bff2cdb16fcfa",
+      "snapshot_sha256": "2edd1c7bc3eb9d24ef31bb957e56decc53e354a136f9f66673dbab51d0af1d30",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "24",
+      "source": "translate/runs/gemma/vi/24/assembled.md",
+      "assembled_sha256": "ef49fb57d6aa767d9c5e5effe1087a3824497ba2c1bbcda3560b1c26d310d2da",
+      "snapshot_sha256": "8b611ce1878bbb175526a1387363acf16b168211e954cac7db99317c952b91f0",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "25",
+      "source": "translate/runs/gemma/vi/25/assembled.md",
+      "assembled_sha256": "635719dd75856691819b9e78997e232a156888ae7bf36a02e3b0bfb757c778cc",
+      "snapshot_sha256": "0cbbbf926c2822dba67cb702f5a67aa410a713f3b6dfcd5eabc5e7590c665e1e",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "26",
+      "source": "translate/runs/gemma/vi/26/assembled.md",
+      "assembled_sha256": "471e5badd19397106e321ad207612939c7d1a82fceaf0cdd926dfbfcccca4fd1",
+      "snapshot_sha256": "7e8903bcace8150be35becd2aac3e79998b33282e1497cbd79b1935f4bc342e7",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "27",
+      "source": "translate/runs/gemma/vi/27/assembled.md",
+      "assembled_sha256": "0ba389c041672062eff648f3e419977023eaba25bb946e8e8c56980ef46030e7",
+      "snapshot_sha256": "6134eff9c3050b60d01f74bc7b9152df5dd1c4f3383c3aa8a2d3aef0b9554135",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "28",
+      "source": "translate/runs/gemma/vi/28/assembled.md",
+      "assembled_sha256": "6a10eb0fdbf875dfc424ca7c467245bc9592fcc0259b37d673ccf62c15e8dce4",
+      "snapshot_sha256": "00e8d4f92c37d8a715d93a2cfe05b10064b66e17818e0f7c07483f3f31142333",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "29",
+      "source": "translate/runs/gemma/vi/29/assembled.md",
+      "assembled_sha256": "ca1634edd906445ce1a170c624b384cbb6feafb60c17803b1fc60c861a4befef",
+      "snapshot_sha256": "740d9ca41722207405045b86244811188a90ab4ba1d443508b0694330e48903e",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "30",
+      "source": "translate/runs/gemma/vi/30/assembled.md",
+      "assembled_sha256": "985b320b4af7c93af3e73e6274cee23b15ecf4e813f505afe521fdb1f8ddf78b",
+      "snapshot_sha256": "d174a8ffb70b69cab37bf74443135f0e9b303aa56587e1164e10cc98bd0927fe",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "31",
+      "source": "translate/runs/gemma/vi/31/assembled.md",
+      "assembled_sha256": "a9dc6cb3d8dd60e898b8be0624bb1a8bbad08f2fcdf0fe561ec222146763b693",
+      "snapshot_sha256": "6816b3b5ac6803e6fd7efa3f28eaccbdc4c2b6b02921d23a2d894e7b871f0356",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "32",
+      "source": "translate/runs/gemma/vi/32/assembled.md",
+      "assembled_sha256": "6c98704ac4dee03436fa07ed3311f0eaa9b86529d9cf7427075caf4c09bb8efb",
+      "snapshot_sha256": "a04069f00356f128dd11dba4607c105cbd39c0b8418fdabe825c1d649a319651",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "33",
+      "source": "translate/runs/gemma/vi/33/assembled.md",
+      "assembled_sha256": "2fcb8d7e4c521000be00a793302001250030e7a05fe1fd7f2c6f2a6e498bff11",
+      "snapshot_sha256": "0033d8ca2d88f882981033b31010507273027d5e8daed918e0460e140a4ba115",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    },
+    {
+      "chapter": "34",
+      "source": "translate/runs/gemma/vi/34/assembled.md",
+      "assembled_sha256": "d8a07d1c3b3c97074d33563f467ae5fae3d1f52dafbfbd265a6849bda307740b",
+      "snapshot_sha256": "b878234f963e143e7c534c00228f343e2505b15c1c3466a0ce99f690f8533bb0",
+      "integrity": "pass",
+      "semantic_review": "pending",
+      "independent_vietnamese_review": "pending",
+      "medical_legal_review": "pending"
+    }
+  ]
+}

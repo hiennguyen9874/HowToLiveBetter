@@ -27,13 +27,15 @@ import sys
 from translate.lib.config import default_root
 from translate.lib.config import load_langs as load_langs_registry
 
+from forge.site.build_vi_preview import build as build_vi_preview
+
 ROOT = default_root()
 SITE = os.path.join(ROOT, "site")
 INDEX_PATH = os.path.join(SITE, "index.html")
 V2_CSS_SRC = os.path.join(ROOT, "forge", "v2.css")
 V2_CSS_DST = os.path.join(SITE, "assets", "v2.css")
 
-HOST = "https://dlgrv.github.io/HowToLiveBetter"
+HOST = "https://hiennguyen9874.github.io/HowToLiveBetter"
 ORIGIN_PAGES = "https://eternity4719.github.io/HowToLiveBetter/"
 ORIGIN_REPO = "https://github.com/eternity4719/HowToLiveBetter"
 
@@ -382,6 +384,9 @@ def main() -> int:
     for lang in codes:
         page = build_locale_page(src, bootstrap_tpl, v2css, meta[lang])
         write(os.path.join(SITE, lang, "index.html"), page)
+
+    if os.path.isdir(os.path.join(ROOT, "preview", "vi")):
+        build_vi_preview(ROOT)
 
     return 0
 
