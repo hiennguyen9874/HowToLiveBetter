@@ -200,6 +200,10 @@ the old hashes; do not bypass this by manually rewriting `resume.json`.
 
 ## Review before publication
 
+See the [draft review checkpoint](vi-draft-review.md) for the latest manual
+reassembly inventory, source-grounded repairs and pending Vietnamese review
+process. Historical batch results are not current quality approval.
+
 Read `batch-report.json` and each failed chapter's logs. Numeric integrity,
 original tags and source preservation are checked against Chinese. Do not
 mechanically insert missing numbers just to pass a gate.

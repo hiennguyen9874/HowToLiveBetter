@@ -41,6 +41,11 @@ def main() -> int:
         sys.exit("missing book/")
     shutil.copytree(book_src, os.path.join(OUT, "book"))
 
+    # Draft snapshots are separate from the published/pilot-guarded book tree.
+    preview_src = os.path.join(ROOT, "preview", "vi")
+    if os.path.isdir(preview_src):
+        shutil.copytree(preview_src, os.path.join(OUT, "preview", "vi"))
+
     readmes = sorted(glob.glob(os.path.join(ROOT, "README*.md")))
     if not readmes:
         sys.exit("no README*.md at repo root")
